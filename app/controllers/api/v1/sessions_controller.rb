@@ -4,7 +4,7 @@ class Api::V1::SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user.try(:authenticate, params[:password])
       cookies.signed[:jwt] = {value: JsonWebToken.encode({ user_id: user.id }), httponly: true}
-      render json: user, status: 200
+      render json: UserSerializer.new(user), status: 200
     else
       render json: {errors: "Invalid username or password"}, status: 400
     end

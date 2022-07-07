@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       cookies.signed[:jwt] = {value: JsonWebToken.encode({ user_id: user.id }), httponly: true}
-      render json: user, status: 201
+      render json: UserSerializer.new(user), status: 201
     else
       render json: {errors: user.errors.full_messages }, status: 422
     end
