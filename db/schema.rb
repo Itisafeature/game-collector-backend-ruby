@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_223323) do
   enable_extension "plpgsql"
 
   create_table "game_platforms", force: :cascade do |t|
-    t.string "game_id"
-    t.string "platform_id"
+    t.integer "game_id"
+    t.integer "platform_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
